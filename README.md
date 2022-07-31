@@ -1,2 +1,2 @@
 # learn-docker
-tests and pratice for docker
+tests and practice for docker
