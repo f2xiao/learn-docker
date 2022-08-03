@@ -1,3 +1,27 @@
+# Cheatsheet
+
+`docker build -t <imageTagName> <host-path-that-contains-dockerfile>`
+
+`docker run -dp <host-port>:<container-port> <imageTagName>`
+
+`docker ps`
+
+`docker stop <container-id>`
+
+`docker rm <container-id>`
+
+`docker login -u <username>`
+
+`docker tag <local-image:tagname> <docker-hub-namespace>/repo-name:tagname`
+
+`docker push <docker-hub-namespace>/repo-name:tagname`
+
+`docker create volume <volume-name>`
+
+`docker run -dp <host-port>:<container-port> -v <volume-name>:<container-data-path>`
+
+`docker run -dp <host-port>:<container-port> -v <host-data-path>:<container-data-path>`
+
 # Overview
 
 docker: an open source platform for developing, shipping and running applications within containers
@@ -105,3 +129,29 @@ stop and remove the old container then build the updated version of the image an
 1. open browser to play with docker
 2. sign in to you docker hub
 3. use commands to run an image from your namespace on docker hub
+ 
+## Presist data in a container app
+two ways to presist data: named volumes and bind mounts
+ 
+data: represents the file data, including the source code(database file), dockfile, etc...
+
+volume/named volume: a named logical area of the physical disk
+Docker maintains the physical location the volume is on the disk, refers to the name of the volume, and docker provides the right data:
+ 
+ 1. create a volume
+ `docker create volume <volume-name>`
+ 
+ 2. specify the volume with its name to be mounted on the location with container folder path
+ 
+ `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-path> <image-tag-name>`
+ 
+ sync  <container-path> to <volume-name> (named volume) or sync <container-path> to <host-path> (bind mounts)
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+
