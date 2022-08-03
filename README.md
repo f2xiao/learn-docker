@@ -20,6 +20,8 @@
 
 `docker run -dp <host-port>:<container-port> -v <volume-name>:<container-data-path>`
 
+`docker volume inspect <volume-name>`
+
 `docker run -dp <host-port>:<container-port> -v <host-data-path>:<container-data-path>`
 
 # Overview
@@ -135,6 +137,8 @@ two ways to presist data: named volumes and bind mounts
  
 data: represents the file data, including the source code(database file), dockfile, etc...
 
+### Use named volumes
+ 
 volume/named volume: a named logical area of the physical disk
 Docker maintains the physical location the volume is on the disk, refers to the name of the volume, and docker provides the right data:
  
@@ -147,7 +151,11 @@ Docker maintains the physical location the volume is on the disk, refers to the 
  
  sync  <container-path> to <volume-name> (named volume) or sync <container-path> to <host-path> (bind mounts)
  
+ 3. inspect the data
  
+ `docker volume inspect <volume-name>`
+ 
+ ### Use bind mounts
  
  
  
