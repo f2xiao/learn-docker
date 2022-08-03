@@ -1,6 +1,6 @@
 # Overview
 
-docker: an open source platform for developing, shipping and running applications in containers
+docker: an open source platform for developing, shipping and running applications within containers
 
 container: a standard unit of loosely isolated environment for distributing and testing application
 
