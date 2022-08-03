@@ -19,6 +19,7 @@ the primary way that Docker user interact with the Docker, whendDocker user type
 an easy to install application on Mac or Windows environment that enables you to build and share containerized apps and microservices, it includes Docker client, Docker compose, Docker daemon, docker content trust, Kubernets and Credential helper.
 
 ## docker registries
+docker registry stores docker image, places for users to share images
 
 ## docker objects
 
@@ -80,7 +81,27 @@ to build an image for an app, we need a Dockerfile, then run the following comma
 `docker build -t <tagAsFriendlyimageName> <host-path-where-to-find-dockerfile>`
 
 ### Start an app container
+
+`docker run -dp <host-port>:<container-port> <imagetagname> `
+
 ### Update the code and replace the container
+
+stop and remove the old container then build the updated version of the image and start a new container with the updated image
+
 ### Share your image
+1. login to the docker hub 
+
+`docker login -u <username>`
+
+2. create a repo with <repoName>, then rename your local image with the same name as the <username>/<repoName>
+
+ `docker tag local-image:tagname new-repo:tagname`
+  
+3. push your local image to the docker hub
+  
+ `docker push new-repo:tagname` i.e. `docker push <username>/<repoName>`
+
 ### Run the image on a new instance
-### Clean up resources
+1. open browser to play with docker
+2. sign in to you docker hub
+3. use commands to run an image from your namespace on docker hub
