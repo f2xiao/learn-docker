@@ -162,7 +162,12 @@ benefits: provide more data into containers
 
 usage senario: use a bind mount to mount source code on the host into the container with `-v <host-mountpoint>:<container-path>` while run the image (create a container), make some code changes in the host source code file, docker will automatically detect the changes, and rebuid and re-run the image with the updated files
 
+### Cache dependencies
 
+#### layer in the image
+in the dockerfile, each line represents a layer in the image 
+ 
+Therefore as long as the dockerfile is not changed and the package.json file is copied (i.e. `COPY package.json ./`) before install app dependencies and copy all files into the WORKDIR, the app dependencies will be cached and any changes to the package
  
 
  
