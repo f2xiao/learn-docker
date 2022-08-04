@@ -167,8 +167,23 @@ usage senario: use a bind mount to mount source code on the host into the contai
 #### layer in the image
 in the dockerfile, each line represents a layer in the image 
  
-Therefore as long as the dockerfile is not changed and the package.json file is copied (i.e. `COPY package.json ./`) before install app dependencies and copy all files into the WORKDIR, the app dependencies will be cached and any changes to the package
+Therefore as long as the dockerfile is not changed and the package.json file is copied (i.e. `COPY package.json ./`) before install app dependencies and copy all files into the WORKDIR, the app dependencies will be cached and any changes to the package.json will be required to rebuild the image and rerun the container with command to reinstall thee dependencies:
+1. prepare dockerfile as following:
+ ```
+ FROM node:12-alpine
+ WORKDIR /app
+ COPY package.json yarn.lock ./
+ RUN yarn install --production
+ COPY . .
+ CMD ["node", "/app/src/index.js"]
+```
+make sure the package.json file contains nodemon so the app restarts after code changes
  
+2. build the image
+`docker build -t <imagetagname> .`
+
+3. run the image and run the command to install dependencies
+ `docker run -dp <host-port>:<container-port> -w <WORKDIR> -v ${PWD}:<WORKDIR> sh -c "yarn install && yarn run dev" `
 
  
  
