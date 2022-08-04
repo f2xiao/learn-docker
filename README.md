@@ -155,9 +155,14 @@ Docker maintains the physical location the volume is on the disk, refers to the 
  
  `docker volume inspect <volume-name>`
  
- ### Use bind mounts
- 
- 
+### Use bind mounts
+bind mounts syncs `<container-path>` to a mountpoint on the host, aka `<host-path>`
+
+benefits: provide more data into containers
+
+usage senario: use a bind mount to mount source code on the host into the container with `-v <host-mountpoint>:<container-path>` while run the image (create a container), make some code changes in the host source code file, docker will automatically detect the changes, and rebuid and re-run the image with the updated files
+
+
  
 
  
