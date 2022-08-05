@@ -171,7 +171,7 @@ A Docker image consists of read-only layers each of which represents a Dockerfil
 
 Once a layer changes, all downstream layers have to be recreated as well. So we don't want any code changes in the app code (excludes the app dependencies, i.e all source code files excluding the package.json file) to trigger the recreation of the app dependencies layer( i.e. package.json file) so the source code layer should be created after the app dependencies layer is created.
 
-When build a image with the dockerfile, cache happens with each layer in the image and docker will use cache as mu as possible.
+When build a image with the dockerfile, cache happens with each layer in the image and docker will use cache as much as possible if no changes made in each layer.
  
 So if the app code is copied into the container before installing app dependencies, any changes in the app code will trigger new installation of app dependencies, which significantly slow down the time to re-build the container.
  
