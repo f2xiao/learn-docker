@@ -198,5 +198,29 @@ make sure the package.json file contains nodemon so the app restarts after code 
 
 NOTE: when use `-v ${PWD}:<WORKDIR>` the `<WORKDIR>` in the container will be overwrite byy the `${PWD}` so the `node_module/` created during the image build process will be deleted if there is no `node_module/` in the `${PWD}` on the host.
  
+### Multi-stage builds
+
+#### React example
+```
+ # stage 1: node environment
+ # base image: node
+ FROM
+ WORKDIR
+ # app dependencies
+ COPY
+ RUN
+ # static html and css
+ COPY
+ # app code
+ COPY
+ # compile JS, SASS into static JS, hmtl and css 
+ RUN
  
+ # stage 2: production environment
+ # base imgae: nginx
+ FROM
+ # compiled JS, html and css
+ COPY --from=build <host-path> <container-path>
+```
+
 
