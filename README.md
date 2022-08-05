@@ -18,11 +18,13 @@
 
 `docker create volume <volume-name>`
 
-`docker run -dp <host-port>:<container-port> -v <volume-name>:<container-data-path>`
+`docker run -dp <host-port>:<container-port> -v <volume-name>:<container-data-path> <imageTagName>`
 
 `docker volume inspect <volume-name>`
 
-`docker run -dp <host-port>:<container-port> -v <host-data-path>:<container-data-path>`
+`docker run -dp <host-port>:<container-port> -v <host-data-path>:<container-data-path> <imageTagName>`
+
+`docker run -dp <host-port>:<container-port> -w <WORKDIR> -v ${PWD}:<WORKDIR> <imageTagName> sh -c "npm install && npm run dev"`
 
 # Overview
 
