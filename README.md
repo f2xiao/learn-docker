@@ -165,15 +165,24 @@ usage senario: use a bind mount to mount source code on the host into the contai
 ### Cache dependencies
 
 #### layer in the image
-in the dockerfile, each line represents a layer in the image 
+A Docker image consists of read-only layers each of which represents a Dockerfile instruction. The layers are stacked and each one is a delta of the changes from the previous layer. 
+
+(When you run an image and generate a container, you add a new writable layer (the “container layer”) on top of the underlying layers. All changes made to the running container, such as writing new files, modifying existing files, and deleting files, are written to this writable container layer.)
+
+Once a layer changes, all downstream layers have to be recreated as well. So we don't want any code changes in the app code (excludes the app dependencies, i.e all source code files excluding the package.json file) to trigger the recreation of the app dependencies layer( i.e. package.json file) so the source code layer should be created after the app dependencies layer is created.
+
+When build a image with the dockerfile, cache happens with each layer in the image and docker will use cache as mu as possible.
  
-Therefore as long as the dockerfile is not changed and the package.json file is copied (i.e. `COPY package.json ./`) before install app dependencies and copy all files into the WORKDIR, the app dependencies will be cached and any changes to the package.json will be required to rebuild the image and rerun the container with command to reinstall thee dependencies:
+So if the app code is copied into the container before installing app dependencies, any changes in the app code will trigger new installation of app dependencies, which significantly slow down the time to re-build the container.
+ 
+So we want the app dependencies layer to be created before the app code layer:
+
 1. prepare dockerfile as following:
  ```
  FROM node:12-alpine
  WORKDIR /app
  COPY package.json yarn.lock ./
- RUN yarn install --production
+ RUN yarn install --production 
  COPY . .
  CMD ["node", "/app/src/index.js"]
 ```
@@ -185,6 +194,7 @@ make sure the package.json file contains nodemon so the app restarts after code 
 3. run the image and run the command to install dependencies
  `docker run -dp <host-port>:<container-port> -w <WORKDIR> -v ${PWD}:<WORKDIR> sh -c "yarn install && yarn run dev" `
 
+NOTE: when use `-v ${PWD}:<WORKDIR>` the `<WORKDIR>` in the container will be overwrite byy the `${PWD}` so the `node_module/` created during the image build process will be deleted if there is no `node_module/` in the `${PWD}` on the host.
  
  
 
