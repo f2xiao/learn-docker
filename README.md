@@ -223,9 +223,10 @@ NOTE: when use `-v ${PWD}:<WORKDIR>` the `<WORKDIR>` in the container will be ov
  COPY --from=build <host-path> <container-path>
 ```
 ## Deploy app to Azure
+ 
 1. create an Azure Container Instance Context: newcontextname->resourcegroup
 
- the ACI context will show under CONTEXTS
+the ACI context will show under CONTEXTS
 
 2. Use the ACI context
  
