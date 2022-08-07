@@ -232,8 +232,10 @@ NOTE: when use `-v ${PWD}:<WORKDIR>` the `<WORKDIR>` in the container will be ov
 `docker use <newacicontext-name>`
  
 3.run the remote image in the cloud from hub.docker.com
- 
+
 `docker run -dp <host-port>:<container-port> registry.<website-name>/<username>/<imageTagName>`
+ 
 `docker run -dp <host-port>:<container-port> registry.hub.docker.com/<username>/<imageTagName>`
+ 
 `docker run -dp <host-port>:<container-port> registry.hub.docker.com/library/<imageTagName>`
 
