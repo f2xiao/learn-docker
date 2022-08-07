@@ -224,12 +224,15 @@ NOTE: when use `-v ${PWD}:<WORKDIR>` the `<WORKDIR>` in the container will be ov
 ```
 ## Deploy app to Azure
 1. create an Azure Container Instance Context: newcontextname->resourcegroup
-the ACI context will show under CONTEXTS
+
+ the ACI context will show under CONTEXTS
 
 2. Use the ACI context
+ 
 `docker use <newacicontext-name>`
  
 3.run the remote image in the cloud from hub.docker.com
+ 
 `docker run -dp <host-port>:<container-port> registry.<website-name>/<username>/<imageTagName>`
 `docker run -dp <host-port>:<container-port> registry.hub.docker.com/<username>/<imageTagName>`
 `docker run -dp <host-port>:<container-port> registry.hub.docker.com/library/<imageTagName>`
