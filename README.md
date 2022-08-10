@@ -41,7 +41,7 @@ client-server architecture:
 listens for Docker API requests and manages Docker objects such as imgaes, containers, volumes and networks
 
 ## docker client
-the primary way that Docker user interact with the Docker, whendDocker user types docker CLI commands, docker client communicates with docker daemon to pass on the requests for docker daemon to execute them.
+the primary way that Docker user interact with the Docker, when docker user types docker CLI commands, docker client communicates with docker daemon to pass on the requests for docker daemon to execute them.
 
 ## docker desktop
 an easy to install application on Mac or Windows environment that enables you to build and share containerized apps and microservices, it includes Docker client, Docker compose, Docker daemon, docker content trust, Kubernets and Credential helper.
