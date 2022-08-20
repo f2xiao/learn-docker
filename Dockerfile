@@ -1,6 +1,7 @@
 FROM node:16.16.0
+WORKDIR /app
 EXPOSE 8080
-COPY package.json package.json
+COPY package.json /app
 RUN npm install
-COPY src src
-CMD ["npm", "run", "dev"] 
+COPY . /app
+CMD ["npm","run","dev"] 

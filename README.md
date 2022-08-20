@@ -54,8 +54,16 @@ docker registry stores docker image, places for users to share images
 ### images
 read-only template with instructions for creating a Docker container
 
+it contains everything needed to run an application, such as all dependencies, source code, configurations, scripts and binaries
+ 
+to create an image, we need either a Dockerfile or docker-compose.yml
+
 ### container
 a runnable instance of an image
+
+it's a process that's isolated from other processes on the host computer, it uses an isolated filesystem
+
+filesystem: provided by a container image
 
 ## Create and share a Docker app
 
@@ -74,17 +82,9 @@ vs-code-extension-(docker&remote-container): let you work with a local Docker De
 - deploy apps to containers
 - debug apps running on your containers
 
-### Create a container
+### Create a container 
 
-container: a process that's isolated from other processes on the host computer, it uses an isolated filesystem
 
-filesystem: provided by a container image
-
-image: 
-- contains everything needed to run an application, such as all dependencies, source code, configurations, scripts and binaries
-- contains Dockerfile or docker-compose.yml
-
-dockerfile:contains instructions for creating a Docker container
 
 #### Docker commands
 
