@@ -51,6 +51,13 @@ docker registry stores docker image, places for users to share images
 
 ## docker objects
 
+Docker objects include:
+- image
+- container
+- network
+- volume
+- plugin
+
 ### images
 read-only template with instructions for creating a Docker container
 
@@ -82,11 +89,66 @@ vs-code-extension-(docker&remote-container): let you work with a local Docker De
 - deploy apps to containers
 - debug apps running on your containers
 
-### Create a container 
+### NOTE about containers 
+Containers are not meant to host an OS. It is meant to run a specific task or process:
+- host an instance of a web server or app or a database
+- carry out some computation or analysis
+
+Examples:
+1. Ubuntu image uses bash as default command:
+`CMD ['bash']`
+
+    NOTE: bash is not really a process, it's a shell taht listens inputs from a terminal. By default, docker doesn't attach a terminal to a container, since bash cannot find the terminal, it exits so the container is no longer running a process so it exits as well.
+
+2. Nginx
+`CMD ['nginx']`
+
+3. Mysql
+`CMD ['mysqld']`
 
 
+## Docker commands
 
-#### Docker commands
+### specify a process when starts a container
+Two ways to define the process to be running when a container is started:
+1. append the command with the docker run command
+    
+    `docker run [command] [parms]`
+    it overwrites the `CMD ["command","parm1"]` in the Dockerfile
+
+2. instruction `CMD` in the Dockerfile
+
+    NOTE: the param1 is fixed in this case, not very good
+
+    SOLUTION: `ENTRYPOINT ["command"]`
+
+        it specifies which program will be running when the container starts and any params entered with the `docker run [imgName] [param1]` will get appended to the entry point.
+
+Examples:
+```
+FROM Ubuntu
+CMD sleep 5
+```
+
+```
+FROM Ubuntu
+ENTRYPOINT ["sleep"]
+```
+
+```
+FROM Ubuntu
+ENTRYPOINT ["sleep"]
+CMD ["5"]
+```
+
+to override the entrypoint use options `--entrypoint [newcommand]`
+
+`docker run --entrypoint [newcommand] [imgName] [param1]`
+### CMD vs ENTRYPOINT
+
+Since containers are meant to run a specific task or process, we can use the `CMD` or `ENTRYPOINT` instruction in the Dockerfile to define what task or process is running when it starts.
+
+
 
 pull an image from the registry and run the image:
 
