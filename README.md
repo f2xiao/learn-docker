@@ -148,7 +148,11 @@ to override the entrypoint use options `--entrypoint [newcommand]`
 
 Since containers are meant to run a specific task or process, we can use the `CMD` or `ENTRYPOINT` instruction in the Dockerfile to define what task or process is running when it starts.
 
+## Docker network
 
+Exercises:
+
+`docker run --name mysql-db --network=wp-mysql-network -e MYSQL_ROOT_PASSWORD=db_pass123 mysql:5.6`
 
 pull an image from the registry and run the image:
 
