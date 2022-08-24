@@ -150,6 +150,8 @@ Since containers are meant to run a specific task or process, we can use the `CM
 
 ## Docker network
 
+Docker creates 3 networks automatically when it's installed: bridge, host and none.
+
 Exercises:
 
 `docker run --name mysql-db --network=wp-mysql-network -e MYSQL_ROOT_PASSWORD=db_pass123 mysql:5.6`
